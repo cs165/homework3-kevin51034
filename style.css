@@ -66,6 +66,8 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
+
+  
 }
 
 .flashcard-box {
@@ -76,7 +78,14 @@ body {
   box-sizing: border-box;
   touch-action: none;
   overflow: hidden;
+  animation: fshow 0.5s ;
 }
+
+@keyframes fshow {
+  from  {height: 0px; }
+  to  {height: 300px; }
+}
+
 
 .flashcard.definition {
   background: white;

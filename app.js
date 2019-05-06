@@ -18,12 +18,27 @@ class App {
     const resultElement = document.querySelector('#results');
     this.results = new ResultsScreen(resultElement);
 
+
+    this.toResult = this.toResult.bind(this);
+    document.addEventListener('toResult', this.toResult);
+
+
     // Uncomment this pair of lines to see the "flashcard" screen:
-    // this.menu.hide();
-    // this.flashcards.show();
+
+    //this.menu.menuItem.addEventListener("click" this.toFlash );
+    this.menu.menuItem();
+
+    //this.menu.menuItem.addEventListener
+
+    //this.menu.hide();
+    //this.flashcards.show();
 
     // Uncomment this pair of lines to see the "results" screen:
-    // this.menu.hide();
-    // this.results.show();
+    //this.menu.hide();
+    //this.results.show();
+  }
+  toResult() {
+    this.flashcards.hide();
+    this.results.show();
   }
 }

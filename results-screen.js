@@ -9,9 +9,13 @@
 class ResultsScreen {
   constructor(containerElement) {
     this.containerElement = containerElement;
+
   }
 
   show(numberCorrect, numberWrong) {
+    console.log(FlashcardScreen.percent)
+    document.dispatchEvent(new CustomEvent('checkButton'));
+
     this.containerElement.classList.remove('inactive');
   }
 
