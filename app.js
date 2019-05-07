@@ -53,9 +53,12 @@ class App {
     this.flashcards.reset();
   }
   toContinue() {
+    //this.chosen = event.detail;
     this.results.hide();
     this.flashcards.show(this);
     //document.dispatchEvent(new CustomEvent('backtoflash'));
+    console.log(this);
+
     console.log('toContinue')
   }
 }

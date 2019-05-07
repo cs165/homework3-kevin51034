@@ -16,11 +16,11 @@ class FlashcardScreen {
     this.correct = 0;
     this.incorrect = 0;
     this.percent = 0;
-
-    this.wrongcard = [][2];
+    //this.wrongcard = [this.word][2] = new Array();
+    this.wrongcard = new Array();
     this.wrongcarddef = new Array();
     this.wrongcardnum = 1;
-    this.wrongcount = 0;
+    //this.wrongcount = 0;
     this.continue = 0;
 
 
@@ -50,38 +50,84 @@ class FlashcardScreen {
   }
   show(item) {
     this.containerElement.classList.remove('inactive');
+
 //catch the title & words & definition
-    if(this.continue === 0){
+
       for(this.itemnum = 0; this.itemnum < FLASHCARD_DECKS.length;this.itemnum++){
         if(item.innerHTML == FLASHCARD_DECKS[this.itemnum].title){
           item = FLASHCARD_DECKS[this.itemnum];
           this.word = Object.entries(FLASHCARD_DECKS[this.itemnum].words);
-            const card = new Flashcard(this.flashcardContainer, this.word[this.itemnum][0] , this.word[this.itemnum][1]);
+          this.w = this.word.length;
+            //const card = new Flashcard(this.flashcardContainer, this.word[this.itemnum][0] , this.word[this.itemnum][1]);
+            break;
         }
       }
+    if(this.continue === 0){
+      const card = new Flashcard(this.flashcardContainer, this.word[this.itemnum][0] , this.word[this.itemnum][1]);
     }
     else {
       console.log('secondround')
-      this.word= new Array();
-      this.worddef= new Array();
-      this.wrongcard = [this.incorrect][2];
+      //console.log(this.word)
+
+      //this.worddef= new Array();
+      //this.wrongcard = [this.incorrect][2] = new Array();
 
       this.continue = 0;
       this.incorrect = 0;
       this.wordnum = 1;
       this.incorrecthtml[0].textContent = '0';
       this.incorrecthtml[1].textContent = '0';
-      //this.wrongcard[this.wrongcardnum] = this.word[this.wordnum];
-      for(let i=1;i<=this.wrongcard.length; i++) {
 
-        this.word[i] = this.wrongcard[i];
-        this.worddef[i] = this.wrongcarddef[i];
-        console.log(this.word[i])
-        console.log(this.worddef[i])
 
+
+      this.wordnum = 1;
+
+      this.wrongcardnum = 1;
+      this.continue = 0;
+
+
+        console.log("錯誤重做");
+
+
+        console.log(this.word)
+
+        this.wordtemp=new Array()
+        this.wordtemp=this.word;
+
+        this.word=[];
+        for(let i=1;i<this.wrongcard.length;i++){
+          this.word[i]=[]
+            for(let j=0;j<2;j++){
+              this.word[i][j]="[" + i + ", " + j + "]";
+            }
+        }
+
+
+
+        console.log("錯誤自卡數")
+        console.log(this.wrongcard)
+
+
+        console.log("word")
+        console.log(this.word)
+        console.log("temp")
+        console.log(this.wordtemp)
+        for(let j = 1;j<this.wrongcard.length;j++){
+          let i = this.wrongcard[j];
+          console.log(this.wrongcard[j])
+
+          this.word[j][0]=this.wordtemp[i-1][0];
+          this.word[j][1]=this.wordtemp[i-1][1];
+        }
+        console.log(this.word)
+        //let j =1;
+        //let i=this.wrongcard[j]
+        this.card = new Flashcard(this.flashcardContainer, this.word[1][0], this.word[1][1]);
+        this.wordnum++;
+        //j++;
+
+        this.wrongcard = new Array();
       }
-      this.card = new Flashcard(this.flashcardContainer, this.word[1], this.worddef[1]);
-    }
 
     //const card = new Flashcard(flashcardContainer, word[0][0] , word[0][1]);
     //const card = new Flashcard(flashcardContainer, 'word' , 'definition');
@@ -97,7 +143,7 @@ class FlashcardScreen {
     this.correcthtml[1].textContent = this.correct;
     //this.check[this.wordnum] = true;
     //MMMMMMMMMMMMMMMMMMMMM
-    this.percent = Math.round(this.correct/this.word.length*100)
+    this.percent = Math.round(this.correct/this.w*100)
     document.querySelector('.percent').textContent = this.percent;
     //console.log(document.querySelectorAll('.correct').textContent);
     let child = document.querySelector('.flashcard-box');
@@ -113,7 +159,7 @@ class FlashcardScreen {
       document.dispatchEvent(new CustomEvent('toResult'));
     }
     else if (child != null){
-      console.log('3')
+      //console.log('3')
        this.flashcardContainer.removeChild(child);
 
        this.card = new Flashcard(this.flashcardContainer, this.word[this.wordnum][0], this.word[this.wordnum][1]);
@@ -123,19 +169,20 @@ class FlashcardScreen {
   }
   dropLeft() {
     this.incorrect++;
-    this.wrongcount++;
+    //this.wrongcount++;
     this.incorrecthtml[0].textContent = this.incorrect;
     this.incorrecthtml[1].textContent = this.incorrect;
     this.continue = 1;
     //this.check[this.wordnum] = false;
 
-    console.log(this.wrongcard)
+
+    console.log("錯誤字卡");
+    console.log(this.word[this.wordnum-1]);
 
 
-    this.wrongcard[this.wrongcardnum][0] = this.word[this.wordnum][0];
-    //this.wrongcard[this.wrongcardnum][1] = this.word[this.wordnum][1];
+
+    this.wrongcard[this.wrongcardnum] = this.wordnum;
     this.wrongcardnum++;
-
 
     let child = document.querySelector('.flashcard-box');
     //console.log(this.word.length);
