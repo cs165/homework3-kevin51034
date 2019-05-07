@@ -7,15 +7,14 @@
 // - Adding additional fields
 
 class Flashcard {
-  constructor(containerElement, frontText, backText , wordlength) {
-  
+  constructor(containerElement, frontText, backText) {
+
     this.startx = 0;
     this.starty = 0;
     this.dx = 0;
     this.dy = 0;
     this.deg = 0;
     this.countword = 0;
-    this.wordlength = wordlength;
     this.dragging = false;
     this.containerElement = containerElement;
     //console.log(wordlength);
