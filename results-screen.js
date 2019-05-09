@@ -12,13 +12,9 @@ class ResultsScreen {
 
     let item = document.getElementById('continue');
     item.addEventListener("click" , this.check);
-
-
   }
 
   show(numberCorrect, numberWrong) {
-    //console.log(FlashcardScreen.percent)
-    //document.dispatchEvent(new CustomEvent('checkButton'));
     if(document.querySelector('.percent').textContent == '100'){
       document.querySelector('.continue').innerHTML = 'Start over?'
     }
@@ -31,6 +27,7 @@ class ResultsScreen {
   hide() {
     this.containerElement.classList.add('inactive');
   }
+  
   check() {
     if(document.querySelector('.percent').textContent == '100'){
       app.toMenu();
@@ -40,7 +37,5 @@ class ResultsScreen {
 
       document.dispatchEvent(new CustomEvent('toContinue'));
     }
-
-
   }
 }

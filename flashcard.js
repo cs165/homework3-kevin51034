@@ -17,9 +17,6 @@ class Flashcard {
     this.countword = 0;
     this.dragging = false;
     this.containerElement = containerElement;
-    //console.log(wordlength);
-    //console.log(this.wordlength);
-
     this._flipCard = this._flipCard.bind(this);
     this._dragCard = this._dragStart.bind(this);
     this._dragCard = this._dragOver.bind(this);
@@ -32,11 +29,7 @@ class Flashcard {
     this.flashcardElement.addEventListener('pointerdown', this._dragStart);
     this.flashcardElement.addEventListener('pointermove', this._dragOver);
     this.flashcardElement.addEventListener('pointerup', this._dragDrop);
-
-
   }
-
-
   // Creates the DOM object representing a flashcard with the given
   // |frontText| and |backText| strings to display on the front and
   // back of the card. Returns a reference to root of this DOM
@@ -103,22 +96,12 @@ class Flashcard {
 
      document.body.style.backgroundColor = '';
      document.getElementById('flashcard-container').style.transform = '';
-     //document.getElementById('flashcard-container').getBoundingClientRect();
      document.getElementById('flashcard-container').style="transition-duration:0.6s";
-     //app.flashcards.hide();
-
-
-     //console.log(this);
-
-
      if (this.dx > 150) {
         document.dispatchEvent(new CustomEvent('dropRight'));
      }
      else if (this.dx < -150) {
         document.dispatchEvent(new CustomEvent('dropLeft'));
      }
-
-     //let word = Object.entries(FLASHCARD_DECKS[i].words);
-       //const card = new Flashcard(flashcardContainer, word[i][0] , word[i][1]);
   }
 }

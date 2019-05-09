@@ -28,17 +28,13 @@ class App {
 
     this.toContinue = this.toContinue.bind(this);
     document.addEventListener('toContinue', this.toContinue);
-
     // Uncomment this pair of lines to see the "flashcard" screen:
-
     //this.menu.menuItem.addEventListener("click" this.toFlash );
     this.menu.menuItem();
 
     //this.menu.menuItem.addEventListener
-
     //this.menu.hide();
     //this.flashcards.show();
-
     // Uncomment this pair of lines to see the "results" screen:
     //this.menu.hide();
     //this.results.show();
@@ -53,12 +49,7 @@ class App {
     this.flashcards.reset();
   }
   toContinue() {
-    //this.chosen = event.detail;
     this.results.hide();
     this.flashcards.show(this);
-    //document.dispatchEvent(new CustomEvent('backtoflash'));
-    console.log(this);
-
-    console.log('toContinue')
   }
 }

@@ -15,23 +15,18 @@ class MenuScreen {
       let item = document.createElement('div');
       item.setAttribute("id", "choices");
       item.innerHTML = FLASHCARD_DECKS[i].title;
-      //console.log(FLASHCARD_DECKS[i].title);
-      //console.log(item.id);
       document.getElementById("choices").appendChild(item)
       item.addEventListener("click" , this.toFlash);
     }
   }
   toFlash() {
-      //console.log('tooooo');
       let menu = document.querySelector('#menu');
-      //console.log(this);
       app.menu.hide();
       app.flashcards.show(this);
   }
   show() {
     this.containerElement.classList.remove('inactive');
   }
-
   hide() {
     this.containerElement.classList.add('inactive');
   }
